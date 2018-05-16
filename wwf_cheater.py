@@ -1,5 +1,4 @@
 # import tkinter
-import numpy as np
 from sortedcontainers import SortedListWithKey
 from itertools import permutations, product
 from string import ascii_lowercase
@@ -9,6 +8,7 @@ from string import ascii_lowercase
 
 # board is 15x15
 # string value (potential values = "", "dl", "dw", "tl", "tw")
+# TODO FIX THIS TO WORK WITH THE FUCKIANGIN FACEBOOK VERSION
 board_multiplier = [
     ["", "", "", "tw", "", "", "tl", "", "tl", "", "", "tw", "", "", ""],
     ["", "", "dl", "", "", "dw", "", "", "", "dw", "", "", "dl", "", ""],
@@ -178,8 +178,10 @@ def get_n_best_moves(letters, board, n):
                     # Check each potential word that you could possibly do!
                     for p in letter_permutations:
                         # TODO if the first spot has a letter, you don't need to check the spots in front of it
-                        # Tuple to character for the added letters
+                        # Tuple of position to character for the added letters
                         added_letters = {}
+                        # The tuple of positions for the beginnings of the offshoot words
+                        offshoot_words = []
                         copy_b = board.deepcopy()
                         main_word = ""
                         place_r = r
@@ -215,6 +217,26 @@ def get_n_best_moves(letters, board, n):
                         # first make sure that it is connected to the board somehow
                         if not is_connected:
                             # Check perpendicularly from each added letter
+                            # You can also use this code to track down which offshoots are words
+                            # TODO Find the beginnings of the offshoot words using this code
+                            for add_r, add_c in added_letters:
+                                if horizontal:
+                                    if add_r + 1 < 15 and copy_b[add_r + 1][add_c] != '':
+                                        is_connected = True
+                                        break
+                                    elif add_r - 1 >= 0 and copy_b[add_r - 1][add_c] != '':
+                                        is_connected = True
+                                        break
+                                else:
+                                    if add_c + 1 < 15 and copy_b[add_r][add_c + 1] != '':
+                                        is_connected = True
+                                        break
+                                    elif add_c - 1 >= 0 and copy_b[add_r][add_c - 1] != '':
+                                        is_connected = True
+                                        break
+                            if not is_connected:
+                                # not connected, this won't work
+                                continue
 
                         # TODO Have a special case for the first move
                         # check to see if main_word is a valid word, then if its off shoots are valid works
@@ -222,6 +244,11 @@ def get_n_best_moves(letters, board, n):
                         # During that, check to make sure you're not counting one letter words
                         # Once it is determined valid, score it using the method specified above
                         # Then place it into the moves sorted list as (score, word, r, c)
+
+                        if not main_word in word_set:
+                            # not a usable word, continue
+                            continue
+
 
                 # switch the horiz. flag
                 horizontal = False
