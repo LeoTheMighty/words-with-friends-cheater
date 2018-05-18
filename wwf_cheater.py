@@ -8,38 +8,38 @@ from math import ceil
 # root.mainloop()
 
 # board is 15x15
-# string value (potential values = "", "dl", "dw", "tl", "tw")
+# string value (potential values = " ", "dl", "dw", "tl", "tw")
 # TODO FIX THIS TO WORK WITH THE FUCKIANGIN FACEBOOK VERSION
 web_board_multiplier = [
-    ["", "", "", "tw", "", "", "tl", "", "tl", "", "", "tw", "", "", ""],
-    ["", "", "dl", "", "", "dw", "", "", "", "dw", "", "", "dl", "", ""],
-    ["", "dl", "", "", "dl", "", "", "", "", "", "dl", "", "", "dl", ""],
-    ["tw", "", "", "tl", "", "", "", "dw", "", "", "", "tl", "", "", "tw"],
-    ["", "", "dl", "", "", "", "dl", "", "dl", "", "", "", "dl", "", ""],
-    ["", "dw", "", "", "", "tl", "", "", "", "tl", "", "", "", "dw", ""],
-    ["tl", "", "", "", "dl", "", "", "", "", "", "dl", "", "", "", "tl"],
-    ["", "", "", "dw", "", "", "", "", "", "", "", "dw", "", "", ""],
-    ["tl", "", "", "", "dl", "", "", "", "", "", "dl", "", "", "", "tl"],
-    ["", "dw", "", "", "", "tl", "", "", "", "tl", "", "", "", "dw", ""],
-    ["", "", "dl", "", "", "", "dl", "", "dl", "", "", "", "dl", "", ""],
-    ["tw", "", "", "tl", "", "", "", "dw", "", "", "", "tl", "", "", "tw"],
-    ["", "dl", "", "", "dl", "", "", "", "", "", "dl", "", "", "dl", ""],
-    ["", "", "dl", "", "", "dw", "", "", "", "dw", "", "", "dl", "", ""],
-    ["", "", "", "tw", "", "", "tl", "", "tl", "", "", "tw", "", "", ""]
+    [" ", " ", " ", "tw", " ", " ", "tl", " ", "tl", " ", " ", "tw", " ", " ", " "],
+    [" ", " ", "dl", " ", " ", "dw", " ", " ", " ", "dw", " ", " ", "dl", " ", " "],
+    [" ", "dl", " ", " ", "dl", " ", " ", " ", " ", " ", "dl", " ", " ", "dl", " "],
+    ["tw", " ", " ", "tl", " ", " ", " ", "dw", " ", " ", " ", "tl", " ", " ", "tw"],
+    [" ", " ", "dl", " ", " ", " ", "dl", " ", "dl", " ", " ", " ", "dl", " ", " "],
+    [" ", "dw", " ", " ", " ", "tl", " ", " ", " ", "tl", " ", " ", " ", "dw", " "],
+    ["tl", " ", " ", " ", "dl", " ", " ", " ", " ", " ", "dl", " ", " ", " ", "tl"],
+    [" ", " ", " ", "dw", " ", " ", " ", " ", " ", " ", " ", "dw", " ", " ", " "],
+    ["tl", " ", " ", " ", "dl", " ", " ", " ", " ", " ", "dl", " ", " ", " ", "tl"],
+    [" ", "dw", " ", " ", " ", "tl", " ", " ", " ", "tl", " ", " ", " ", "dw", " "],
+    [" ", " ", "dl", " ", " ", " ", "dl", " ", "dl", " ", " ", " ", "dl", " ", " "],
+    ["tw", " ", " ", "tl", " ", " ", " ", "dw", " ", " ", " ", "tl", " ", " ", "tw"],
+    [" ", "dl", " ", " ", "dl", " ", " ", " ", " ", " ", "dl", " ", " ", "dl", " "],
+    [" ", " ", "dl", " ", " ", "dw", " ", " ", " ", "dw", " ", " ", "dl", " ", " "],
+    [" ", " ", " ", "tw", " ", " ", "tl", " ", "tl", " ", " ", "tw", " ", " ", " "]
 ]
 
 facebook_board_multiplier = [
-    ["tl", "", "tw", "", "", "", "", "", "tw", "", "tl"],
-    ["", "dw", "", "", "", "dw", "", "", "", "dw", ""],
-    ["tw", "", "tl", "", "dl", "", "dl", "", "tl", "", "tw"],
-    ["", "", "", "tl", "", "", "", "tl", "", "", ""],
-    ["", "", "dl", "", "", "", "", "", "dl", "", ""],
-    ["", "dw", "", "", "", "", "", "", "", "dw", ""],
-    ["", "", "dl", "", "", "", "", "", "dl", "", ""],
-    ["", "", "", "tl", "", "", "", "tl", "", "", ""],
-    ["tw", "", "tl", "", "dl", "", "dl", "", "tl", "", "tw"],
-    ["", "dw", "", "", "", "dw", "", "", "", "dw", ""],
-    ["tl", "", "tw", "", "", "", "", "", "tw", "", "tl"]
+    ["tl", " ", "tw", " ", " ", " ", " ", " ", "tw", " ", "tl"],
+    [" ", "dw", " ", " ", " ", "dw", " ", " ", " ", "dw", " "],
+    ["tw", " ", "tl", " ", "dl", " ", "dl", " ", "tl", " ", "tw"],
+    [" ", " ", " ", "tl", " ", " ", " ", "tl", " ", " ", " "],
+    [" ", " ", "dl", " ", " ", " ", " ", " ", "dl", " ", " "],
+    [" ", "dw", " ", " ", " ", " ", " ", " ", " ", "dw", " "],
+    [" ", " ", "dl", " ", " ", " ", " ", " ", "dl", " ", " "],
+    [" ", " ", " ", "tl", " ", " ", " ", "tl", " ", " ", " "],
+    ["tw", " ", "tl", " ", "dl", " ", "dl", " ", "tl", " ", "tw"],
+    [" ", "dw", " ", " ", " ", "dw", " ", " ", " ", "dw", " "],
+    ["tl", " ", "tw", " ", " ", " ", " ", " ", "tw", " ", "tl"]
 ]
 
 # value of each letter
@@ -70,7 +70,7 @@ except FileNotFoundError:
             word_set.add(line)
 
 # max_length = 0
-# max_word = ""
+# max_word = " "
 # num_too_long = 0
 # total = 0
 # for line in file_word_list:
@@ -143,7 +143,7 @@ def permutations_of_length(letters, length):
 
 def clear_board(board, added_letters):
     for added_r, added_c in added_letters:
-        board[added_r][added_c] = ""
+        board[added_r][added_c] = " "
 
 
 def get_n_best_moves(letters, board, n):
@@ -156,7 +156,7 @@ def get_n_best_moves(letters, board, n):
     The word is the main word stemming from the move (if ambiguous, goes to horizontal)
     """
     # TODO Find out if the board is empty
-    is_empty = all(all(value == "" for value in li) for li in board)
+    is_empty = all(all(value == " " for value in li) for li in board)
     # print("aa" in word_set)
     board_dimension = len(board)
     middle = ceil(board_dimension / 2) - 1
@@ -185,7 +185,7 @@ def get_n_best_moves(letters, board, n):
             # board[r][c] is the space we are looking at
             # TODO PLEASE MAKE SURE MY LOGIC IS SOUND HERE
             current_board_spot = board[r][c]
-            if current_board_spot != '':
+            if current_board_spot != " ":
                 spot1 = (r + 1, c)
                 spot2 = (r, c + 1)
                 spots_to_skip.add(spot1)
@@ -222,7 +222,7 @@ def get_n_best_moves(letters, board, n):
                         offshoot_words = []
                         score = 0  # This is the total score for the move
                         # copy_b = copy.deepcopy(board)
-                        main_word = ""
+                        main_word = ''
                         place_r = r
                         place_c = c
                         is_valid = True
@@ -236,7 +236,7 @@ def get_n_best_moves(letters, board, n):
                             # TODO This is sometimes out of range
                             # You still have to check to make sure that it's not going off the board
                             # Also make sure you're putting it on an empty space
-                            while place_c < board_dimension and place_r < board_dimension and board[place_r][place_c] != '':
+                            while place_c < board_dimension and place_r < board_dimension and board[place_r][place_c] != " ":
                                 # This also means that the board is definitely connected
                                 is_connected = True
                                 board_l = board[place_r][place_c]
@@ -291,19 +291,19 @@ def get_n_best_moves(letters, board, n):
                             for add_r, add_c in added_letters:
                                 if horizontal:
                                     # Then you look along the column
-                                    if add_r - 1 >= 0 and board[add_r - 1][add_c] != '':
+                                    if add_r - 1 >= 0 and board[add_r - 1][add_c] != " ":
                                         # There is proof that this word is connected
                                         is_connected = True
                                         # Then try to find the beginning of the offshoot word!
                                         word_r = add_r - 1
-                                        while word_r - 1 >= 0 and board[word_r - 1][add_c] != "":
+                                        while word_r - 1 >= 0 and board[word_r - 1][add_c] != " ":
                                             word_r -= 1
                                         # At this point, `(word_r - 1, add_c)` is an empty/invalid spot
                                         # Thus, `(word_r, add_c)` is the start of the offshoot word
                                         offshoot_words.append((word_r, add_c))
                                         # continue
                                     # If there was an offshoot word before it, the "offshoot" after it doesn't count
-                                    elif add_r + 1 < board_dimension and board[add_r + 1][add_c] != '':
+                                    elif add_r + 1 < board_dimension and board[add_r + 1][add_c] != " ":
                                         # There is proof that this word is connected
                                         is_connected = True
                                         # Then you know that `(add_r, add_c)` is the position to add to offshoot
@@ -311,18 +311,18 @@ def get_n_best_moves(letters, board, n):
                                         # continue
                                 else:
                                     # Then you look along the row
-                                    if add_c - 1 >= 0 and board[add_r][add_c - 1] != '':
+                                    if add_c - 1 >= 0 and board[add_r][add_c - 1] != " ":
                                         # There is proof that this word is connected
                                         is_connected = True
                                         # Then try to find the beginning of the offshoot word!
                                         word_c = add_c - 1
-                                        while word_c - 1 >= 0 and board[add_r][word_c - 1] != "":
+                                        while word_c - 1 >= 0 and board[add_r][word_c - 1] != " ":
                                             word_c -= 1
                                         # At this point, `(add_r, word_c - 1)` is an empty/invalid spot
                                         # Thus, `(add_r, word_c)` is the start of the offshoot word
                                         offshoot_words.append((add_r, word_c))
                                         # continue
-                                    elif add_c + 1 < board_dimension and board[add_r][add_c + 1] != '':
+                                    elif add_c + 1 < board_dimension and board[add_r][add_c + 1] != " ":
                                         # There is proof that this word is connected
                                         is_connected = True
                                         # Then you know that `(add_r, add_c)` is the position to add to offshoot
@@ -345,8 +345,6 @@ def get_n_best_moves(letters, board, n):
                             # not a usable word, continue
                             clear_board(board, added_letters)
                             continue
-                        if main_word == "cubs":
-                            print(offshoot_words)
                         # check all of the offshoot words now
                         is_valid = True
                         # TODO Use this to also score all of the offshoot words
@@ -375,7 +373,7 @@ def get_n_best_moves(letters, board, n):
                             if horizontal:
                                 # Then look along the column
                                 word_change_r = word_r
-                                while word_change_r + 1 < board_dimension and board[word_change_r + 1][word_c] != "":
+                                while word_change_r + 1 < board_dimension and board[word_change_r + 1][word_c] != " ":
                                     offshoot_l = board[word_change_r + 1][word_c]
                                     offshoot_word += offshoot_l
                                     word_change_r += 1
@@ -396,7 +394,7 @@ def get_n_best_moves(letters, board, n):
                             else:
                                 # Then look along the row
                                 word_change_c = word_c
-                                while word_change_c + 1 < board_dimension and board[word_r][word_change_c + 1] != "":
+                                while word_change_c + 1 < board_dimension and board[word_r][word_change_c + 1] != " ":
                                     offshoot_l = board[word_r][word_change_c + 1]
                                     offshoot_word += offshoot_l
                                     word_change_c += 1
@@ -457,37 +455,37 @@ main_board = []
 for _ in range(0, board_dimension_for_the_real_board):
     line = []
     for _ in range(0, board_dimension_for_the_real_board):
-        line.append('')
+        line.append(" ")
     main_board.append(line)
 
 # Usage of board: board[y][x] or board[r][c]
 
 cleared_board = [
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""]
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
 ]
 
 main_board = [
-    ["", "", "", "", "", "", "", "", "", "", "v"],
-    ["", "", "", "", "", "o", "n", "e", "", "f", "e"],
-    ["", "", "", "", "", "", "a", "m", "b", "e", "r"],
-    ["", "", "", "", "", "", "", "", "", "t", "a"],
-    ["", "", "", "", "", "", "", "", "j", "a", ""],
-    ["", "", "", "", "", "h", "a", "d", "a", "l", ""],
-    ["", "", "", "", "", "", "l", "e", "g", "", ""],
-    ["", "", "", "", "", "d", "e", "r", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""],
-    ["", "", "", "", "", "", "", "", "", "", ""]
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "v"],
+    [" ", " ", " ", " ", " ", "o", "n", "e", " ", "f", "e"],
+    [" ", " ", " ", " ", " ", " ", "a", "m", "b", "e", "r"],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", "t", "a"],
+    [" ", " ", " ", " ", " ", " ", " ", " ", "j", "a", " "],
+    [" ", " ", " ", " ", " ", "h", "a", "d", "a", "l", " "],
+    [" ", " ", " ", " ", " ", " ", "l", "e", "g", " ", " "],
+    [" ", " ", " ", " ", " ", "d", "e", "r", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "]
 ]
 
 best_moves = get_n_best_moves("qszutyc", main_board, 5)
