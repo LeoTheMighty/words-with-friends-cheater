@@ -9,7 +9,6 @@ from math import ceil
 
 # board is 15x15
 # string value (potential values = " ", "dl", "dw", "tl", "tw")
-# TODO FIX THIS TO WORK WITH THE FUCKIANGIN FACEBOOK VERSION
 web_board_multiplier = [
     [" ", " ", " ", "tw", " ", " ", "tl", " ", "tl", " ", " ", "tw", " ", " ", " "],
     [" ", " ", "dl", " ", " ", "dw", " ", " ", " ", "dw", " ", " ", "dl", " ", " "],
